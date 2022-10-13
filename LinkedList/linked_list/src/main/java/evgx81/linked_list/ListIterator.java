@@ -1,7 +1,9 @@
 package evgx81.linked_list;
 
 /**
- *  Класс ListIterator реализует интерфейс итератора для класса LinkedList.
+ * Класс ListIterator реализует интерфейс итератора для класса LinkedList.
+ * 
+ * @author evgx81 
  */
 public class ListIterator<T> {
     /**
@@ -24,7 +26,7 @@ public class ListIterator<T> {
      * @return true, если в листе имеется следующий элемент, иначе возвращает false
      */
     public boolean hasNext() {
-        return current.getNextNode() != null;
+        return current != null;
     }
 
     /**
