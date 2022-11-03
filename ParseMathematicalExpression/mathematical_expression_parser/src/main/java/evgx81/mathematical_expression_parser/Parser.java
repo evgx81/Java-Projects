@@ -78,4 +78,45 @@ public class Parser {
     private String getExpRestPart(String s) {
         return (s != null && s.length() > 1) ? s.substring(1) : "";
     }
+
+    /**
+     * Возвращает вычисленное значение выражения
+     * 
+     * @return значение выражения
+     */
+    public BigDecimal eval() {
+        return expressionEvaluation();
+    }
+
+    /**
+     * Проверяет, соответсвует ли под строка функции, которую может обработать парсер.
+     * Если да, то высчитываем значение функции, иначе - выбрасываем исключение.
+     * 
+     * @param funcName заданная строка
+     * @param funcArg аргумент функции
+     * @return значение функции
+     * @throws IllegalArgumentException если строка не соотвествует функции, которую может обработать парсер
+     */
+    private BigDecimal evaluateFunction(String funcName, BigDecimal funcArg) throws IllegalArgumentException {
+        if ("sqrt".equals(funcName.toLowerCase()))
+            return new BigDecimal(Math.sqrt(funcArg.doubleValue()));
+        else if ("sin".equals(funcName.toLowerCase()))
+            return new BigDecimal(Math.sin(funcArg.doubleValue()));
+        else if ("cos".equals(funcName.toLowerCase()))
+            return new BigDecimal(Math.cos(funcArg.doubleValue()));
+        else if ("tg".equals(funcName.toLowerCase()))
+            return new BigDecimal(Math.tan(funcArg.doubleValue()));
+        else if ("asin".equals(funcName.toLowerCase()))
+            return new BigDecimal(Math.asin(funcArg.doubleValue()));
+        else if ("acos".equals(funcName.toLowerCase()))
+            return new BigDecimal(Math.acos(funcArg.doubleValue()));
+        else if ("atan".equals(funcName.toLowerCase()))
+            return new BigDecimal(Math.atan(funcArg.doubleValue()));
+        else if ("sgn".equals(funcName.toLowerCase()))
+            return new BigDecimal(funcArg.signum());
+        else if ("abs".equals(funcName.toLowerCase()))
+            return funcArg.abs();
+        else 
+            throw new IllegalArgumentException("Undefined function '" + funcName + "'");
+    }
 }
