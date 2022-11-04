@@ -85,7 +85,34 @@ public class Parser {
      * @return значение выражения
      */
     public BigDecimal eval() {
-        return expressionEvaluation();
+        return evaluateExpression();
+    }
+
+    /**
+     * Вычисляем значение формулы, содержащей операции типа сложения и вычитания
+     * 
+     * @return значение формулы, содержащей операции типа сложения и вычитания
+     */
+    private BigDecimal evaluateExpression() {
+        String operation = "";
+        BigDecimal result;
+
+        result = evaluateTerm();
+        boolean flag = true;
+        while (flag) {
+            operation = getExpFirstSymb(expression);
+            if ("+".equals(operation)) {
+                expression = getExpRestPart(expression);
+                result = result.add(evaluateTerm());
+            } 
+            else if ("-".equals(operation)) {
+                expression = getExpRestPart(expression);
+                result = result.subtract(evaluateTerm());
+            } 
+            else 
+                flag = false;
+        }
+        return result;
     }
 
     /**
@@ -166,7 +193,7 @@ public class Parser {
         // и рассматриваем оставшуюся часть выражения.
         else if (symb.equals("(") || symb.equals("[") || symb.equals("{")) {
             expression = getExpRestPart(expression);
-            result = expressionSum();
+            result = evaluateExpression();
             if (!")".equals(getExpFirstSymb(expression)) || !"]".equals(getExpFirstSymb(expression)) || !"}".equals(getExpFirstSymb(expression))) {
                 throw new IllegalArgumentException("Syntax error in brackets!");
             } 
@@ -188,7 +215,7 @@ public class Parser {
                 } 
                 else if (symb.equals("(") || symb.equals("[") || symb.equals("{")) {
                     expression = getExpRestPart(expression);
-                    functionArgument = expressionSum();
+                    functionArgument = evaluateExpression();
                     if (!")".equals(getExpFirstSymb(expression)) || !"]".equals(getExpFirstSymb(expression)) || !"}".equals(getExpFirstSymb(expression))) {
                         throw new IllegalArgumentException("Syntax error in brackets!");
                     } 
