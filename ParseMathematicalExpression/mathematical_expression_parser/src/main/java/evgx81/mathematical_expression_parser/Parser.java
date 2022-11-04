@@ -89,6 +89,90 @@ public class Parser {
     }
 
     /**
+     * Вычисляем значение простейшей формулы, 
+     * являющейся либо числом, либо произвольной формулой, 
+     * заключенной в круглые скобки, либо функцией, либо переменной.
+     * 
+     * @return число или значение формулы, заключенной в круглые скобки, или значение функции или значение переменной
+     * @throws IllegalArgumentException если отсутствует закрывающая скобка
+     */
+    private BigDecimal evaluateFactor() throws IllegalArgumentException {
+        BigDecimal result = BigDecimal.ZERO;
+        String number = "";
+        String identifier = "";
+        BigDecimal functionArgument = BigDecimal.ZERO;
+
+        String symb = getExpFirstSymb(expression);
+
+        // Проверяем, является ли считанный символ частью числа.
+        // Если это условие выполняется, то создаем новое число 
+        // и рассматриваем оставшуюся часть выражения.
+        if (symb.matches("[0-9\\.]")) {
+            boolean flag = true;
+            while (flag) {
+                symb = getExpFirstSymb(expression);
+                if (symb.matches("[0-9\\.]")) {
+                    number += getExpFirstSymb(expression);
+                    expression = getExpRestPart(expression);
+                } 
+                else {
+                    result = new BigDecimal(number);
+                    flag = false;
+                }
+            }
+        }
+        // Проверяем, является ли считанный символ закрывающей скобкой.
+        // Если это условие выполняется, то высчитываем значение формулы в скобках,
+        // и рассматриваем оставшуюся часть выражения.
+        else if (symb.equals("(") || symb.equals("[") || symb.equals("{")) {
+            expression = getExpRestPart(expression);
+            result = expressionSum();
+            if (!")".equals(getExpFirstSymb(expression)) || !"]".equals(getExpFirstSymb(expression)) || !"}".equals(getExpFirstSymb(expression))) {
+                throw new IllegalArgumentException("Syntax error in brackets!");
+            } 
+            else 
+                expression = getExpRestPart(expression);
+        }
+        // Проверяем, является ли символ частью переменной или функции.
+        // Если символ является частью функции, то получаем аргумент и высчитываем значение функции
+        // найденным аргументом.
+        // Если символ является частью переменной, то создаем переменную и подставляем в результат.
+        // Далее рассматриваем оставшуюся часть выражения.
+        else if (symb.matches("[a-zA-Z]")) {
+            boolean flag = true;
+            while (flag) {
+                symb = getExpFirstSymb(expression);
+                if (symb.matches("[a-zA-Z]")) {
+                    identifier += getExpFirstSymb(expression);
+                    expression = getExpRestPart(expression);
+                } 
+                else if (symb.equals("(") || symb.equals("[") || symb.equals("{")) {
+                    expression = getExpRestPart(expression);
+                    functionArgument = expressionSum();
+                    if (!")".equals(getExpFirstSymb(expression)) || !"]".equals(getExpFirstSymb(expression)) || !"}".equals(getExpFirstSymb(expression))) {
+                        throw new IllegalArgumentException("Syntax error in brackets!");
+                    } 
+                    else {
+                        expression = getExpRestPart(expression);
+                        result = evaluateFunction(identifier, functionArgument);
+                        flag = false;
+                    }
+                } 
+                else {
+                    result = variables.get(identifier);
+                    if (result == null) {
+                        throw new IllegalArgumentException("Undefined variable '" + identifier + "'");
+                    } 
+                    else
+                        flag = false;
+                }
+            }
+        }
+
+        return result;
+    }
+
+    /**
      * Проверяет, соответсвует ли под строка функции, которую может обработать парсер.
      * Если да, то высчитываем значение функции, иначе - выбрасываем исключение.
      * 
