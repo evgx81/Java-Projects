@@ -89,6 +89,46 @@ public class Parser {
     }
 
     /**
+     *  Вычисляем значения формулы, содержащей операции типа возведения в степень, умножения и деления.
+     * 
+     * @return значение формулы
+     * @throws ArithmeticException при делении на нуль
+     */
+    private BigDecimal evaluateTerm() throws ArithmeticException{
+        String operation = "";
+        BigDecimal result = BigDecimal.ZERO;
+        BigDecimal num = BigDecimal.ZERO;
+
+        result = evaluateFactor();
+        boolean flag = true;
+        while (flag) {
+            operation = getExpFirstSymb(expression);
+            if ("^".equals(operation)) {
+                expression = getExpRestPart(expression);
+                result = result.pow(evaluateFactor().intValue());
+            }
+            if ("*".equals(operation)) {
+                expression = getExpRestPart(expression);
+                result = result.multiply(evaluateFactor());
+            } 
+            else if ("/".equals(operation)) {
+                expression = getExpRestPart(expression);
+                try {
+                    num = evaluateFactor();
+                    result = result.divide(num);
+                } 
+                catch (ArithmeticException e) {
+                    throw e;
+                }
+            } 
+            else
+                flag = false;
+        }
+        
+        return result;
+    }
+
+    /**
      * Вычисляем значение простейшей формулы, 
      * являющейся либо числом, либо произвольной формулой, 
      * заключенной в круглые скобки, либо функцией, либо переменной.
