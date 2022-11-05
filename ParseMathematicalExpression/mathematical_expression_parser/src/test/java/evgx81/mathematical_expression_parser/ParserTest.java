@@ -8,6 +8,9 @@ import java.util.ArrayList;
 
 import org.junit.Test;
 
+/**
+ *  Unit тесты для класса Parser
+ */
 public class ParserTest {
 
     @Test
@@ -79,7 +82,7 @@ public class ParserTest {
     }
 
     @Test
-    public void evalSqrtTest() {
+    public void evaluateFactorSqrtTest() {
         String exp = "sqrt(4)";
 
         Parser parser = new Parser(exp);
@@ -87,7 +90,7 @@ public class ParserTest {
     }
 
     @Test
-    public void evalSinTest() {
+    public void evaluateFactorSinTest() {
         String exp = "sin(0)";
 
         Parser parser = new Parser(exp);
@@ -95,7 +98,7 @@ public class ParserTest {
     }
 
     @Test
-    public void evalCosTest() {
+    public void evaluateFactorCosTest() {
         String exp = "cos(0)";
 
         Parser parser = new Parser(exp);
@@ -103,7 +106,7 @@ public class ParserTest {
     }
 
     @Test
-    public void evalTgTest() {
+    public void evaluateFactorTgTest() {
         String exp = "tg(0)";
 
         Parser parser = new Parser(exp);
@@ -111,7 +114,7 @@ public class ParserTest {
     }
 
     @Test
-    public void evalArcsinTest() {
+    public void evaluateFactorArcsinTest() {
         String exp = "arcsin(0)";
 
         Parser parser = new Parser(exp);
@@ -119,7 +122,7 @@ public class ParserTest {
     }
 
     @Test
-    public void evalArccosTest() {
+    public void evaluateFactorArccosTest() {
         String exp = "arccos(1)";
 
         Parser parser = new Parser(exp);
@@ -127,7 +130,7 @@ public class ParserTest {
     }
 
     @Test
-    public void evalArctgTest() {
+    public void evaluateFactorArctgTest() {
         String exp = "tg(0)";
 
         Parser parser = new Parser(exp);
@@ -135,7 +138,7 @@ public class ParserTest {
     }
 
     @Test
-    public void evalSgnTest() {
+    public void evaluateFactorSgnTest() {
         String exp1 = "sgn(5)";
         String exp2 = "sgn(0)";
         String exp3 = "sgn(-5)";
@@ -150,7 +153,7 @@ public class ParserTest {
     }
 
     @Test
-    public void evalAbsTest() {
+    public void evaluateFactorAbsTest() {
         String exp1 = "abs(5)";
         String exp2 = "abs(0)";
         String exp3 = "abs(-5)";
@@ -166,7 +169,7 @@ public class ParserTest {
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void evalWrongFunctionTest() {
+    public void evaluateFactorWrongFunctionTest() {
         String exp = "srt(5)";
 
         Parser parser = new Parser(exp);
