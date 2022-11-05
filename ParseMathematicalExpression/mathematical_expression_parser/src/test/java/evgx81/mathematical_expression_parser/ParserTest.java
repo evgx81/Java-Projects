@@ -51,11 +51,31 @@ public class ParserTest {
         
     }
 
-    @Test(expected = IllegalArgumentException.class)
-    public void evalExpressionWithVariablesWithoutTheirSetting() {
-        String exp = "-2*(2-3)*x";
-        Parser parser = new Parser(exp);
-        parser.eval();
+    @Test
+    public void evaluateExpressionTest() {
+        String exp1 = "2+3";
+        String exp2 = "2-3";
+
+        Parser parser1 = new Parser(exp1);
+        Parser parser2 = new Parser(exp2);
+
+        assertEquals(new BigDecimal(5), parser1.eval());
+        assertEquals(new BigDecimal(-1), parser2.eval());
+    }
+
+    @Test
+    public void evaluateTermTest() {
+        String exp1 = "2^3";
+        String exp2 = "2*3";
+        String exp3 = "4/2";
+
+        Parser parser1 = new Parser(exp1);
+        Parser parser2 = new Parser(exp2);
+        Parser parser3 = new Parser(exp3);
+
+        assertEquals(new BigDecimal(8), parser1.eval());
+        assertEquals(new BigDecimal(6), parser2.eval());
+        assertEquals(new BigDecimal(2), parser3.eval());
     }
 
     @Test
