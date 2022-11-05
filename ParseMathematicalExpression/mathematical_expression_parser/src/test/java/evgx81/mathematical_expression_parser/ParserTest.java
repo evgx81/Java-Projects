@@ -9,7 +9,9 @@ import java.util.ArrayList;
 import org.junit.Test;
 
 /**
- *  Unit тесты для класса Parser
+ *  Unit тесты для класса Parser.
+ * 
+ * @author evgx81 
  */
 public class ParserTest {
 
@@ -80,6 +82,30 @@ public class ParserTest {
         assertEquals(new BigDecimal(6), parser2.eval());
         assertEquals(new BigDecimal(2), parser3.eval());
     }
+
+    @Test
+    public void bracketsTest() {
+        String exp1 = "(2+3)^2";
+        String exp2 = "[2+3]^2";
+        String exp3 = "{2+3}^2";
+
+        Parser parser1 = new Parser(exp1);
+        Parser parser2 = new Parser(exp2);
+        Parser parser3 = new Parser(exp3);
+
+        assertEquals(new BigDecimal(25), parser1.eval());
+        assertEquals(new BigDecimal(25), parser2.eval());
+        assertEquals(new BigDecimal(25), parser3.eval());
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void missingBracketsTest() {
+        String exp = "(2+3)^2)";
+
+        Parser parser = new Parser(exp);
+        parser.eval();
+    }
+    
 
     @Test
     public void evaluateFactorSqrtTest() {
@@ -171,6 +197,15 @@ public class ParserTest {
     @Test(expected = IllegalArgumentException.class)
     public void evaluateFactorWrongFunctionTest() {
         String exp = "srt(5)";
+
+        Parser parser = new Parser(exp);
+
+       parser.eval();
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void evaluateFactorMissingBracketTest() {
+        String exp = "srt(5)}";
 
         Parser parser = new Parser(exp);
 
