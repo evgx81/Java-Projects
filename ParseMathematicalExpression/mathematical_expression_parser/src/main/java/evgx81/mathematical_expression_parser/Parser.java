@@ -257,11 +257,11 @@ public class Parser {
             return new BigDecimal(Math.cos(funcArg.doubleValue()));
         else if ("tg".equals(funcName.toLowerCase()))
             return new BigDecimal(Math.tan(funcArg.doubleValue()));
-        else if ("asin".equals(funcName.toLowerCase()))
+        else if ("arcsin".equals(funcName.toLowerCase()))
             return new BigDecimal(Math.asin(funcArg.doubleValue()));
-        else if ("acos".equals(funcName.toLowerCase()))
+        else if ("arccos".equals(funcName.toLowerCase()))
             return new BigDecimal(Math.acos(funcArg.doubleValue()));
-        else if ("atan".equals(funcName.toLowerCase()))
+        else if ("arctg".equals(funcName.toLowerCase()))
             return new BigDecimal(Math.atan(funcArg.doubleValue()));
         else if ("sgn".equals(funcName.toLowerCase()))
             return new BigDecimal(funcArg.signum());
