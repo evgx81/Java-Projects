@@ -12,7 +12,7 @@ public class ParserTest {
 
     @Test
     public void createParser() {
-        String exp = "-2*(2-3)(2+2)";
+        String exp = "-2*(2-3)*(2+2)";
 
         Parser parser = new Parser(exp);
         assertEquals(exp, parser.getExpression());
@@ -58,4 +58,100 @@ public class ParserTest {
         parser.eval();
     }
 
+    @Test
+    public void evalSqrtTest() {
+        String exp = "sqrt(4)";
+
+        Parser parser = new Parser(exp);
+        assertEquals(new BigDecimal(2), parser.eval());
+    }
+
+    @Test
+    public void evalSinTest() {
+        String exp = "sin(0)";
+
+        Parser parser = new Parser(exp);
+        assertEquals(BigDecimal.ZERO, parser.eval());
+    }
+
+    @Test
+    public void evalCosTest() {
+        String exp = "cos(0)";
+
+        Parser parser = new Parser(exp);
+        assertEquals(BigDecimal.ONE, parser.eval());
+    }
+
+    @Test
+    public void evalTgTest() {
+        String exp = "tg(0)";
+
+        Parser parser = new Parser(exp);
+        assertEquals(BigDecimal.ZERO, parser.eval());
+    }
+
+    @Test
+    public void evalArcsinTest() {
+        String exp = "arcsin(0)";
+
+        Parser parser = new Parser(exp);
+        assertEquals(BigDecimal.ZERO, parser.eval());
+    }
+
+    @Test
+    public void evalArccosTest() {
+        String exp = "arccos(1)";
+
+        Parser parser = new Parser(exp);
+        assertEquals(BigDecimal.ZERO, parser.eval());
+    }
+
+    @Test
+    public void evalArctgTest() {
+        String exp = "tg(0)";
+
+        Parser parser = new Parser(exp);
+        assertEquals(BigDecimal.ZERO, parser.eval());
+    }
+
+    @Test
+    public void evalSgnTest() {
+        String exp1 = "sgn(5)";
+        String exp2 = "sgn(0)";
+        String exp3 = "sgn(-5)";
+
+        Parser parser1 = new Parser(exp1);
+        Parser parser2 = new Parser(exp2);
+        Parser parser3 = new Parser(exp3);
+
+        assertEquals(new BigDecimal(1), parser1.eval());
+        assertEquals(new BigDecimal(0), parser2.eval());
+        assertEquals(new BigDecimal(-1), parser3.eval());
+    }
+
+    @Test
+    public void evalAbsTest() {
+        String exp1 = "abs(5)";
+        String exp2 = "abs(0)";
+        String exp3 = "abs(-5)";
+
+        Parser parser1 = new Parser(exp1);
+        Parser parser2 = new Parser(exp2);
+        Parser parser3 = new Parser(exp3);
+
+        assertEquals(new BigDecimal(5), parser1.eval());
+        assertEquals(new BigDecimal(0), parser2.eval());
+        assertEquals(new BigDecimal(5), parser3.eval());
+
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void evalWrongFunctionTest() {
+        String exp = "srt(5)";
+
+        Parser parser = new Parser(exp);
+
+       parser.eval();
+    }
+    
 }
