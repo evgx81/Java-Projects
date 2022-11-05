@@ -85,7 +85,12 @@ public class Parser {
      * @return значение выражения
      */
     public BigDecimal eval() {
-        return evaluateExpression();
+        BigDecimal result =  evaluateExpression();
+
+        if(!expression.isEmpty())
+            throw new IllegalArgumentException("Syntax error in expression!");
+
+        return result;
     }
 
     /**
@@ -95,7 +100,7 @@ public class Parser {
      */
     private BigDecimal evaluateExpression() {
         String operation = "";
-        BigDecimal result;
+        BigDecimal result = BigDecimal.ZERO;
 
         result = evaluateTerm();
         boolean flag = true;
@@ -112,11 +117,12 @@ public class Parser {
             else 
                 flag = false;
         }
+
         return result;
     }
 
     /**
-     *  Вычисляем значения формулы, содержащей операции типа возведения в степень, умножения и деления.
+     * Вычисляем значения формулы, содержащей операции типа умножения и деления.
      * 
      * @return значение формулы
      * @throws ArithmeticException при делении на нуль
@@ -126,22 +132,18 @@ public class Parser {
         BigDecimal result = BigDecimal.ZERO;
         BigDecimal num = BigDecimal.ZERO;
 
-        result = evaluateFactor();
+        result = evaluatePower();
         boolean flag = true;
         while (flag) {
             operation = getExpFirstSymb(expression);
-            if ("^".equals(operation)) {
-                expression = getExpRestPart(expression);
-                result = result.pow(evaluateFactor().intValue());
-            }
             if ("*".equals(operation)) {
                 expression = getExpRestPart(expression);
-                result = result.multiply(evaluateFactor());
+                result = result.multiply(evaluatePower());
             } 
             else if ("/".equals(operation)) {
                 expression = getExpRestPart(expression);
                 try {
-                    num = evaluateFactor();
+                    num = evaluatePower();
                     result = result.divide(num);
                 } 
                 catch (ArithmeticException e) {
@@ -152,6 +154,30 @@ public class Parser {
                 flag = false;
         }
         
+        return result;
+    }
+
+    /**
+     * Вычисляем значения формулы, содержащей операцию возведения в степень.
+     * 
+     * @return значение формулы
+     */
+    public BigDecimal evaluatePower() {
+        String operation = "";
+        BigDecimal result = BigDecimal.ZERO;
+
+        result = evaluateFactor();
+        boolean flag = true;
+        while (flag) {
+            operation = getExpFirstSymb(expression);
+            if ("^".equals(operation)) {
+                expression = getExpRestPart(expression);
+                result = result.pow(evaluateFactor().intValue());
+            } 
+            else
+                flag = false;
+        }
+
         return result;
     }
 
@@ -194,7 +220,7 @@ public class Parser {
         else if (symb.equals("(") || symb.equals("[") || symb.equals("{")) {
             expression = getExpRestPart(expression);
             result = evaluateExpression();
-            if (!")".equals(getExpFirstSymb(expression)) || !"]".equals(getExpFirstSymb(expression)) || !"}".equals(getExpFirstSymb(expression))) {
+            if (!")".equals(getExpFirstSymb(expression)) && !"]".equals(getExpFirstSymb(expression)) && !"}".equals(getExpFirstSymb(expression))) {
                 throw new IllegalArgumentException("Syntax error in brackets!");
             } 
             else 
@@ -216,7 +242,7 @@ public class Parser {
                 else if (symb.equals("(") || symb.equals("[") || symb.equals("{")) {
                     expression = getExpRestPart(expression);
                     functionArgument = evaluateExpression();
-                    if (!")".equals(getExpFirstSymb(expression)) || !"]".equals(getExpFirstSymb(expression)) || !"}".equals(getExpFirstSymb(expression))) {
+                    if (!")".equals(getExpFirstSymb(expression)) && !"]".equals(getExpFirstSymb(expression)) && !"}".equals(getExpFirstSymb(expression))) {
                         throw new IllegalArgumentException("Syntax error in brackets!");
                     } 
                     else {
