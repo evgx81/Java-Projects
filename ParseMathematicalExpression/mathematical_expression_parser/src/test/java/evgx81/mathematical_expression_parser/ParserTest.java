@@ -105,7 +105,14 @@ public class ParserTest {
         Parser parser = new Parser(exp);
         parser.eval();
     }
-    
+
+    @Test
+    public void evaluatePowerTest() {
+        String exp = "2*2^10+1";
+
+        Parser parser = new Parser(exp);
+        assertEquals(new BigDecimal(2049), parser.eval());
+    }
 
     @Test
     public void evaluateFactorSqrtTest() {
