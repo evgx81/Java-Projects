@@ -1,6 +1,7 @@
 package evgx81.measure_lists_performance;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
@@ -30,22 +31,32 @@ import org.openjdk.jmh.runner.options.TimeValue;
 public class TestListsFunctions {
 
     /**
-     * Список чисел, которые характеризуют сколько раз будет вызван метод.
+     * Список чисел, которые характеризуют количество вызова метода.
      */
     @Param({"10", "100"})
     private int N;
 
     /**
-     * Инициализируем пустые листы, которые впоследствии будут заполнены объектами класса String.
+     * Пустые листы, которые впоследствии будут заполнены объектами класса String.
      */
     private List<String> arrayListEmpty;
     private List<String> linkedListEmpty;
 
     /**
-     * Инициализируем листы, которые предполагаются заполненными объектами класса String.
+     * Листы, которые предполагаются заполненными объектами класса String.
      */
     private List<String> arrayListWithData;
     private List<String> linkedListWithData;
+
+    /**
+     * Коллекция, которая будет добавлена в arrayListEmpty.
+     */
+    Collection<String> arrayListCollection;
+
+    /**
+     * Коллекция, которая будет добавлена в linkedListEmpty.
+     */
+    Collection<String> linkedListCollection;
 
     /**
      * Функция вывода результатов тестирования.
@@ -71,9 +82,15 @@ public class TestListsFunctions {
         arrayListEmpty = new ArrayList<>();
         linkedListEmpty = new LinkedList<>();
 
+        arrayListCollection = new ArrayList<>();
+        linkedListCollection = new LinkedList<>();
+
         arrayListWithData = new ArrayList<>();
         linkedListWithData = new LinkedList<>();
         for (int i = 0; i < N; i++) {
+            arrayListCollection.add("data: " + i);
+            linkedListCollection.add("data: " + i);
+
             arrayListWithData.add("data: " + i);
             linkedListWithData.add("data: " + i);
         }
@@ -114,5 +131,22 @@ public class TestListsFunctions {
         for (int i = 0; i < N; i++)
             linkedListEmpty.add(i, "data " + i);
     }
+
+    /**
+     * Измеряем скорость добавления коллекции в ArrayList.
+     */
+    @Benchmark
+    public void arrayListAddAll() {
+        arrayListEmpty.addAll(arrayListCollection);
+    }
+
+    /**
+     * Измеряем скорость добавления коллекции в LinkedList.
+     */
+    @Benchmark
+    public void linkedListAddAll() {
+        linkedListEmpty.addAll(linkedListCollection);
+    }
+    
 }
 
