@@ -5,6 +5,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
+import org.openjdk.jmh.annotations.Benchmark;
 import org.openjdk.jmh.annotations.BenchmarkMode;
 import org.openjdk.jmh.annotations.Mode;
 import org.openjdk.jmh.annotations.OutputTimeUnit;
@@ -31,7 +32,7 @@ public class TestListsFunctions {
     /**
      * Список чисел, которые характеризуют сколько раз будет вызван метод.
      */
-    @Param({"100", "200"})
+    @Param({"10", "100"})
     private int N;
 
     /**
@@ -76,6 +77,42 @@ public class TestListsFunctions {
             arrayListWithData.add("data: " + i);
             linkedListWithData.add("data: " + i);
         }
+    }
+
+    /**
+     * Измеряем скорость добавления элемента в ArrayList.
+     */
+    @Benchmark
+    public void arrayListAdd() {
+        for (int i = 0; i < N; i++)
+            arrayListEmpty.add("data " + i);
+    }
+
+    /**
+     * Измеряем скорость добавления элемента в LinkedList.
+     */
+    @Benchmark
+    public void linkedListAdd() {
+        for (int i = 0; i < N; i++)
+            linkedListEmpty.add("data " + i);
+    }
+
+    /**
+     * Измеряем скорость добавления элемента по индексу в ArrayList.
+     */
+    @Benchmark
+    public void arrayListAddByIndex() {
+        for (int i = 0; i < N; i++)
+            arrayListEmpty.add(i, "data " + i);
+    }
+
+    /**
+     * Измеряем скорость добавления элемента по индексу в LinkedList.
+     */
+    @Benchmark
+    public void linkedListAddByIndex() {
+        for (int i = 0; i < N; i++)
+            linkedListEmpty.add(i, "data " + i);
     }
 }
 
