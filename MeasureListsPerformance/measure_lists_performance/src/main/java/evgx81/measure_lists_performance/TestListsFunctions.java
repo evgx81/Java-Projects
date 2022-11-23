@@ -71,6 +71,7 @@ public class TestListsFunctions {
             .measurementIterations(5)
             .measurementTime(TimeValue.seconds(1))
             .jvmArgs("-Xms1024m", "-Xmx2048m")
+            .output("D:/code/Java/MeasureListsPerformance/benchmark.txt")
             .build();
         
         new Runner(opt).run();
@@ -100,20 +101,28 @@ public class TestListsFunctions {
 
     /**
      * Измеряем скорость добавления элемента в ArrayList.
+     * 
+     * @param bh требуется для устранения побочных эффектов.
      */
     @Benchmark
-    public void arrayListAdd() {
-        for (int i = 0; i < N; i++)
-            arrayListEmpty.add(i);
+    public void arrayListAdd(Blackhole bh) {
+        for (int i = 0; i < N; i++) {
+            boolean res = arrayListEmpty.add(i);
+            bh.consume(res);
+        }
     }
 
     /**
      * Измеряем скорость добавления элемента в LinkedList.
+     * 
+     * @param bh требуется для устранения побочных эффектов.
      */
     @Benchmark
-    public void linkedListAdd() {
-        for (int i = 0; i < N; i++)
-            linkedListEmpty.add(i);
+    public void linkedListAdd(Blackhole bh) {
+        for (int i = 0; i < N; i++) {
+            boolean res = linkedListEmpty.add(i);
+            bh.consume(res);
+        }
     }
 
     /**
@@ -136,18 +145,24 @@ public class TestListsFunctions {
 
     /**
      * Измеряем скорость добавления коллекции в ArrayList.
+     * 
+     * @param bh требуется для устранения побочных эффектов.
      */
     @Benchmark
-    public void arrayListAddAll() {
-        arrayListEmpty.addAll(arrayListCollection);
+    public void arrayListAddAll(Blackhole bh) {
+        boolean res = arrayListEmpty.addAll(arrayListCollection);
+        bh.consume(res);
     }
 
     /**
      * Измеряем скорость добавления коллекции в LinkedList.
+     * 
+     * @param bh требуется для устранения побочных эффектов.
      */
     @Benchmark
-    public void linkedListAddAll() {
-        linkedListEmpty.addAll(linkedListCollection);
+    public void linkedListAddAll(Blackhole bh) {
+        boolean res = linkedListEmpty.addAll(linkedListCollection);
+        bh.consume(res);
     }
 
      /**
@@ -169,7 +184,7 @@ public class TestListsFunctions {
     /**
      * Измеряем скорость удаления элемента на определенной позиции в ArrayList.
      * 
-     * @param bh требуется для "поглощения" значений, которые не будут использоваться в дальнейшем.
+     * @param bh требуется для устранения побочных эффектов.
      */
     @Benchmark
     public void arrayListRemove(Blackhole bh) {
@@ -182,7 +197,7 @@ public class TestListsFunctions {
     /**
      * Измеряем скорость удаления элемента на определенной позиции в LinkedList.
      * 
-     * @param bh требуется для "поглощения" значений, которые не будут использоваться в дальнейшем.
+     * @param bh требуется для устранения побочных эффектов.
      */
     @Benchmark
     public void linkedListRemove(Blackhole bh) {
@@ -195,7 +210,7 @@ public class TestListsFunctions {
     /**
      * Измеряем скорость получения элемента на определенной позиции в ArrayList.
      * 
-     * @param bh требуется для "поглощения" значений, которые не будут использоваться в дальнейшем.
+     * @param bh требуется для устранения побочных эффектов.
      */
     @Benchmark
     public void arrayListGet(Blackhole bh) {
@@ -208,7 +223,7 @@ public class TestListsFunctions {
     /**
      * Измеряем скорость получения элемента на определенной позиции в LinkedList.
      * 
-     * @param bh требуется для "поглощения" значений, которые не будут использоваться в дальнейшем.
+     * @param bh требуется для устранения побочных эффектов.
      */
     @Benchmark
     public void linkedListGet(Blackhole bh) {
@@ -221,7 +236,7 @@ public class TestListsFunctions {
     /**
      * Измеряем скорость подсчета количества элементов в ArrayList.
      * 
-     * @param bh требуется для "поглощения" значений, которые не будут использоваться в дальнейшем.
+     * @param bh требуется для устранения побочных эффектов.
      */
     @Benchmark
     public void arrayListSize(Blackhole bh) {
@@ -232,7 +247,7 @@ public class TestListsFunctions {
     /**
      * Измеряем скорость подсчета количества элементов в LinkedList.
      * 
-     * @param bh требуется для "поглощения" значений, которые не будут использоваться в дальнейшем.
+     * @param bh требуется требуется для устранения побочных эффектов.
      */
     @Benchmark
     public void linkedListSize(Blackhole bh) {
@@ -243,7 +258,7 @@ public class TestListsFunctions {
     /**
      * Измеряем скорость вычисления индекса элемента в ArrayList.
      * 
-     * @param bh требуется для "поглощения" значений, которые не будут использоваться в дальнейшем.
+     * @param bh требуется для устранения побочных эффектов.
      */
     @Benchmark
     public void arrayListIndexOf(Blackhole bh) {
@@ -256,7 +271,7 @@ public class TestListsFunctions {
     /**
      * Измеряем скорость вычисления индекса элемента в linkedList.
      * 
-     * @param bh требуется для "поглощения" значений, которые не будут использоваться в дальнейшем.
+     * @param bh требуется для устранения побочных эффектов.
      */
     @Benchmark
     public void linkedListIndexOf(Blackhole bh) {
@@ -268,20 +283,28 @@ public class TestListsFunctions {
 
     /**
      * Измеряем скорость замены элемента на определенной позиции заданным элементом в ArrayList.
+     * 
+     *  @param bh требуется для устранения побочных эффектов.
      */
     @Benchmark
-    public void arrayListSet() {
-        for (int i = 0; i < arrayListWithData.size(); i++) 
-            arrayListWithData.set(i, i*10);
+    public void arrayListSet(Blackhole bh) {
+        for (int i = 0; i < arrayListWithData.size(); i++) {
+            Integer s = arrayListWithData.set(i, i*10);
+            bh.consume(s);
+        }
     }
 
     /**
      * Измеряем скорость замены элемента на определенной позиции заданным элементом в LinkedList.
+     * 
+     *  @param bh требуется для устранения побочных эффектов.
      */
     @Benchmark
-    public void linkedListSet() {
-        for (int i = 0; i < linkedListWithData.size(); i++) 
-            linkedListWithData.set(i, i*10);
+    public void linkedListSet(Blackhole bh) {
+        for (int i = 0; i < linkedListWithData.size(); i++) {
+            Integer s = linkedListWithData.set(i, i*10);
+            bh.consume(s);
+        }
     }
 }
 
