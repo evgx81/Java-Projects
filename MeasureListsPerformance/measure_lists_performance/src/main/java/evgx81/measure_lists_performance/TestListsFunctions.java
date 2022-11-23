@@ -33,30 +33,30 @@ public class TestListsFunctions {
     /**
      * Список чисел, которые характеризуют количество вызова метода.
      */
-    @Param({"10", "100"})
+    @Param({"1", "10", "50", "100", "1000", "2000", "10000"})
     private int N;
 
     /**
-     * Пустые листы, которые впоследствии будут заполнены объектами класса String.
+     * Пустые листы, которые впоследствии будут заполнены объектами класса Integer.
      */
-    private List<String> arrayListEmpty;
-    private List<String> linkedListEmpty;
+    private List<Integer> arrayListEmpty;
+    private List<Integer> linkedListEmpty;
 
     /**
-     * Листы, которые предполагаются заполненными объектами класса String.
+     * Листы, которые предполагаются заполненными объектами класса Integer.
      */
-    private List<String> arrayListWithData;
-    private List<String> linkedListWithData;
+    private List<Integer> arrayListWithData;
+    private List<Integer> linkedListWithData;
 
     /**
      * Коллекция, которая будет добавлена в arrayListEmpty.
      */
-    Collection<String> arrayListCollection;
+    Collection<Integer> arrayListCollection;
 
     /**
      * Коллекция, которая будет добавлена в linkedListEmpty.
      */
-    Collection<String> linkedListCollection;
+    Collection<Integer> linkedListCollection;
 
     /**
      * Функция вывода результатов тестирования.
@@ -69,6 +69,7 @@ public class TestListsFunctions {
             .warmupTime(TimeValue.seconds(1))
             .measurementIterations(5)
             .measurementTime(TimeValue.seconds(1))
+            .jvmArgs("-Xms1024m", "-Xmx2048m")
             .build();
         
         new Runner(opt).run();
@@ -88,11 +89,11 @@ public class TestListsFunctions {
         arrayListWithData = new ArrayList<>();
         linkedListWithData = new LinkedList<>();
         for (int i = 0; i < N; i++) {
-            arrayListCollection.add("data: " + i);
-            linkedListCollection.add("data: " + i);
+            arrayListCollection.add(i);
+            linkedListCollection.add(i);
 
-            arrayListWithData.add("data: " + i);
-            linkedListWithData.add("data: " + i);
+            arrayListWithData.add(i);
+            linkedListWithData.add(i);
         }
     }
 
@@ -102,7 +103,7 @@ public class TestListsFunctions {
     @Benchmark
     public void arrayListAdd() {
         for (int i = 0; i < N; i++)
-            arrayListEmpty.add("data " + i);
+            arrayListEmpty.add(i);
     }
 
     /**
@@ -111,7 +112,7 @@ public class TestListsFunctions {
     @Benchmark
     public void linkedListAdd() {
         for (int i = 0; i < N; i++)
-            linkedListEmpty.add("data " + i);
+            linkedListEmpty.add(i);
     }
 
     /**
@@ -120,7 +121,7 @@ public class TestListsFunctions {
     @Benchmark
     public void arrayListAddByIndex() {
         for (int i = 0; i < N; i++)
-            arrayListEmpty.add(i, "data " + i);
+            arrayListEmpty.add(i, i);
     }
 
     /**
@@ -129,7 +130,7 @@ public class TestListsFunctions {
     @Benchmark
     public void linkedListAddByIndex() {
         for (int i = 0; i < N; i++)
-            linkedListEmpty.add(i, "data " + i);
+            linkedListEmpty.add(i, i);
     }
 
     /**
@@ -147,6 +148,5 @@ public class TestListsFunctions {
     public void linkedListAddAll() {
         linkedListEmpty.addAll(linkedListCollection);
     }
-    
 }
 
