@@ -148,5 +148,21 @@ public class TestListsFunctions {
     public void linkedListAddAll() {
         linkedListEmpty.addAll(linkedListCollection);
     }
+
+     /**
+     * Измеряем скорость очистки ArrayList.
+     */
+    @Benchmark
+    public void arrayListClear() {
+        linkedListWithData.clear();
+    }
+
+    /**
+     * Измеряем скорость очистки LinkedList.
+     */
+    @Benchmark
+    public void linkedListClear() {
+        linkedListWithData.clear();
+    }
 }
 
