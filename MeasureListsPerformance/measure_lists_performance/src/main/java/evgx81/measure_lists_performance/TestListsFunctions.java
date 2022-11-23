@@ -239,5 +239,31 @@ public class TestListsFunctions {
         Integer s = linkedListWithData.size();
         bh.consume(s);
     }
+
+    /**
+     * Измеряем скорость вычисления индекса элемента в ArrayList.
+     * 
+     * @param bh требуется для "поглощения" значений, которые не будут использоваться в дальнейшем.
+     */
+    @Benchmark
+    public void arrayListIndexOf(Blackhole bh) {
+        for (int i = 0; i < arrayListWithData.size(); i++) {
+            Integer s = arrayListWithData.indexOf(i);
+            bh.consume(s);
+        }
+    }
+
+    /**
+     * Измеряем скорость вычисления индекса элемента в linkedList.
+     * 
+     * @param bh требуется для "поглощения" значений, которые не будут использоваться в дальнейшем.
+     */
+    @Benchmark
+    public void linkedListIndexOf(Blackhole bh) {
+        for (int i = 0; i < linkedListWithData.size(); i++) {
+            Integer s = linkedListWithData.indexOf(i);
+            bh.consume(s);
+        }
+    }
 }
 
