@@ -14,6 +14,7 @@ import org.openjdk.jmh.annotations.Param;
 import org.openjdk.jmh.annotations.Scope;
 import org.openjdk.jmh.annotations.Setup;
 import org.openjdk.jmh.annotations.State;
+import org.openjdk.jmh.infra.Blackhole;
 import org.openjdk.jmh.runner.Runner;
 import org.openjdk.jmh.runner.RunnerException;
 import org.openjdk.jmh.runner.options.Options;
@@ -163,6 +164,32 @@ public class TestListsFunctions {
     @Benchmark
     public void linkedListClear() {
         linkedListWithData.clear();
+    }
+
+    /**
+     * Измеряем скорость удаления элемента на определенной позиции в ArrayList.
+     * 
+     * @param bh требуется для "поглощения" значений, которые не будут использоваться в дальнейшем.
+     */
+    @Benchmark
+    public void arrayListRemove(Blackhole bh) {
+        for (int i = 0; i < arrayListWithData.size(); i++) {
+            Integer s = arrayListWithData.remove(i);
+            bh.consume(s);
+        }
+    }
+
+    /**
+     * Измеряем скорость удаления элемента на определенной позиции в LinkedList.
+     * 
+     * @param bh требуется для "поглощения" значений, которые не будут использоваться в дальнейшем.
+     */
+    @Benchmark
+    public void linkedListRemove(Blackhole bh) {
+        for (int i = 0; i < linkedListWithData.size(); i++) {
+            Integer s = linkedListWithData.remove(i);
+            bh.consume(s);
+        }
     }
 }
 
