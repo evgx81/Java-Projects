@@ -191,5 +191,31 @@ public class TestListsFunctions {
             bh.consume(s);
         }
     }
+
+    /**
+     * Измеряем скорость получения элемента на определенной позиции в ArrayList.
+     * 
+     * @param bh требуется для "поглощения" значений, которые не будут использоваться в дальнейшем.
+     */
+    @Benchmark
+    public void arrayListGet(Blackhole bh) {
+        for (int i = 0; i < arrayListWithData.size(); i++) {
+            Integer s = arrayListWithData.get(i);
+            bh.consume(s);
+        }
+    }
+
+    /**
+     * Измеряем скорость получения элемента на определенной позиции в LinkedList.
+     * 
+     * @param bh требуется для "поглощения" значений, которые не будут использоваться в дальнейшем.
+     */
+    @Benchmark
+    public void linkedListGet(Blackhole bh) {
+        for (int i = 0; i < linkedListWithData.size(); i++) {
+            Integer s = linkedListWithData.get(i);
+            bh.consume(s);
+        }
+    }
 }
 
