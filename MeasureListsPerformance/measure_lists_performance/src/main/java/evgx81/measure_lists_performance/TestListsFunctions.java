@@ -265,5 +265,23 @@ public class TestListsFunctions {
             bh.consume(s);
         }
     }
+
+    /**
+     * Измеряем скорость замены элемента на определенной позиции заданным элементом в ArrayList.
+     */
+    @Benchmark
+    public void arrayListSet() {
+        for (int i = 0; i < arrayListWithData.size(); i++) 
+            arrayListWithData.set(i, i*10);
+    }
+
+    /**
+     * Измеряем скорость замены элемента на определенной позиции заданным элементом в LinkedList.
+     */
+    @Benchmark
+    public void linkedListSet() {
+        for (int i = 0; i < linkedListWithData.size(); i++) 
+            linkedListWithData.set(i, i*10);
+    }
 }
 
