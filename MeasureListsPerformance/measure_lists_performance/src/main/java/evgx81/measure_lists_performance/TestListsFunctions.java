@@ -306,5 +306,32 @@ public class TestListsFunctions {
             bh.consume(s);
         }
     }
+
+     /**
+     * Измеряем скорость проверки наличия элемента в ArrayList.
+     * 
+     * @param bh требуется для устранения побочных эффектов.
+     */
+    @Benchmark
+    public void arrayListContains(Blackhole bh) {
+        for (int i = 0; i < arrayListWithData.size(); i++) {
+            boolean res = arrayListWithData.contains(i);
+            bh.consume(res);
+        }
+            
+    }
+
+    /**
+     * Измеряем скорость проверки наличия элемента в LinkedList.
+     * 
+     * @param bh требуется для устранения побочных эффектов.
+     */
+    @Benchmark
+    public void linkedListContains(Blackhole bh) {
+        for (int i = 0; i < linkedListWithData.size(); i++) {
+            boolean res = linkedListWithData.contains(i);
+            bh.consume(res);
+        } 
+    }
 }
 
