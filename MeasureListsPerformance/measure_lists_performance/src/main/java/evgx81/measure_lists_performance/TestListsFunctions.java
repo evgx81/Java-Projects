@@ -217,5 +217,27 @@ public class TestListsFunctions {
             bh.consume(s);
         }
     }
+
+    /**
+     * Измеряем скорость подсчета количества элементов в ArrayList.
+     * 
+     * @param bh требуется для "поглощения" значений, которые не будут использоваться в дальнейшем.
+     */
+    @Benchmark
+    public void arrayListSize(Blackhole bh) {
+        Integer s = arrayListWithData.size();
+        bh.consume(s);
+    }
+
+    /**
+     * Измеряем скорость подсчета количества элементов в LinkedList.
+     * 
+     * @param bh требуется для "поглощения" значений, которые не будут использоваться в дальнейшем.
+     */
+    @Benchmark
+    public void linkedListSize(Blackhole bh) {
+        Integer s = linkedListWithData.size();
+        bh.consume(s);
+    }
 }
 
