@@ -8,6 +8,7 @@
 Количество вызовов метода: 1, 10, 50, 100, 1000, 2000, 10000.  
 
 ### Метод add(E e) ###
+![addImage](https://user-images.githubusercontent.com/44549306/203795836-c4fdb69b-1782-4709-8de4-8dffe6b7c0d0.png)
 #### Таблица результатов ####
 ```
 Benchmark                                  (N)  Mode  Cnt          Score           Error  Units
