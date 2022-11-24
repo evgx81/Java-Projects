@@ -34,7 +34,7 @@ public class TestListsFunctions {
     /**
      * Список чисел, которые характеризуют количество вызова метода.
      */
-    @Param({"1", "10", "50", "100", "1000", "2000", "10000"})
+    @Param({"1", "10", "50", "100", "500", "1000", "2000", "10000"})
     private int N;
 
     /**
@@ -318,7 +318,7 @@ public class TestListsFunctions {
             boolean res = arrayListWithData.contains(i);
             bh.consume(res);
         }
-            
+   
     }
 
     /**
