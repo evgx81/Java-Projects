@@ -118,6 +118,7 @@ TestListsFunctions.linkedListRemove       2000  avgt    5          1,550 ±     
 TestListsFunctions.linkedListRemove      10000  avgt    5          1,550 ±         1,010  ns/op
 ```
 ### Метод get(int index) ###
+![getImage](https://user-images.githubusercontent.com/44549306/203795817-4fea75eb-3bd3-4748-83d9-a0242645b71b.png)
 #### Таблица результатов ####
 ```
 Benchmark                                  (N)  Mode  Cnt          Score           Error  Units
@@ -139,6 +140,7 @@ TestListsFunctions.linkedListGet          2000  avgt    5    1581663,720 ±    1
 TestListsFunctions.linkedListGet         10000  avgt    5   64308239,814 ±   8621439,047  ns/op
 ```
 ### Метод size() ###
+![sizeImage](https://user-images.githubusercontent.com/44549306/203795831-0936e29e-1dbf-4b6b-a16f-94074547a502.png)
 #### Таблица результатов ####
 ```
 Benchmark                                  (N)  Mode  Cnt          Score           Error  Units
