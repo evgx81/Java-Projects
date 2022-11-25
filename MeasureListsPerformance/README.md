@@ -118,6 +118,7 @@ TestListsFunctions.linkedListRemove       2000  avgt    5          1,550 ±     
 TestListsFunctions.linkedListRemove      10000  avgt    5          1,550 ±         1,010  ns/op
 ```
 ### Метод get(int index) ###
+![getImage](https://user-images.githubusercontent.com/44549306/203795817-4fea75eb-3bd3-4748-83d9-a0242645b71b.png)
 #### Таблица результатов ####
 ```
 Benchmark                                  (N)  Mode  Cnt          Score           Error  Units
@@ -139,6 +140,7 @@ TestListsFunctions.linkedListGet          2000  avgt    5    1581663,720 ±    1
 TestListsFunctions.linkedListGet         10000  avgt    5   64308239,814 ±   8621439,047  ns/op
 ```
 ### Метод size() ###
+![sizeImage](https://user-images.githubusercontent.com/44549306/203795831-0936e29e-1dbf-4b6b-a16f-94074547a502.png)
 #### Таблица результатов ####
 ```
 Benchmark                                  (N)  Mode  Cnt          Score           Error  Units
@@ -160,6 +162,7 @@ TestListsFunctions.linkedListSize         2000  avgt    5          2,569 ±     
 TestListsFunctions.linkedListSize        10000  avgt    5          2,592 ±         0,355  ns/op
 ```
 ### Метод indexOf(Object o) ###
+![indexOfImage](https://user-images.githubusercontent.com/44549306/203941800-d45e8d72-4154-4860-b579-5f79ef6fb654.png)
 #### Таблица результатов ####
 ```
 Benchmark                                  (N)  Mode  Cnt          Score           Error  Units
@@ -181,6 +184,7 @@ TestListsFunctions.linkedListIndexOf      2000  avgt    5    6350290,881 ±   42
 TestListsFunctions.linkedListIndexOf     10000  avgt    5  301434453,333 ± 411384726,506  ns/op
 ```
 ### Метод set(int index, E element) ###
+![setImage](https://user-images.githubusercontent.com/44549306/203795828-80210daa-cfed-4a33-ac80-1ee917212429.png)
 #### Таблица результатов ####
 ```
 Benchmark                                  (N)  Mode  Cnt          Score           Error  Units
@@ -202,6 +206,7 @@ TestListsFunctions.linkedListSet          2000  avgt    5    1417101,151 ±   13
 TestListsFunctions.linkedListSet         10000  avgt    5   64006706,618 ±   6466353,308  ns/op
 ```
 ### Метод contains(Object o) ###
+![containsImage](https://user-images.githubusercontent.com/44549306/203795813-8b44a851-55cb-4429-93a8-0a8117abf15a.png)
 #### Таблица результатов ####
 ```
 Benchmark                                  (N)  Mode  Cnt          Score           Error  Units
