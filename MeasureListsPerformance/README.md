@@ -96,6 +96,7 @@ TestListsFunctions.linkedListClear        2000  avgt    5          1,710 ±     
 TestListsFunctions.linkedListClear       10000  avgt    5          1,772 ±         0,257  ns/op
 ```
 ### Метод remove(int index) ###
+![removeImage](https://user-images.githubusercontent.com/44549306/203795824-c22776cb-8c37-4c8a-bc8a-bdd45fa25b10.png)
 #### Таблица результатов ####
 ```
 Benchmark                                  (N)  Mode  Cnt          Score           Error  Units
