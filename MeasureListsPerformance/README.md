@@ -184,6 +184,7 @@ TestListsFunctions.linkedListIndexOf      2000  avgt    5    6350290,881 ±   42
 TestListsFunctions.linkedListIndexOf     10000  avgt    5  301434453,333 ± 411384726,506  ns/op
 ```
 ### Метод set(int index, E element) ###
+![setImage](https://user-images.githubusercontent.com/44549306/203795828-80210daa-cfed-4a33-ac80-1ee917212429.png)
 #### Таблица результатов ####
 ```
 Benchmark                                  (N)  Mode  Cnt          Score           Error  Units
