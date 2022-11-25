@@ -206,6 +206,7 @@ TestListsFunctions.linkedListSet          2000  avgt    5    1417101,151 ±   13
 TestListsFunctions.linkedListSet         10000  avgt    5   64006706,618 ±   6466353,308  ns/op
 ```
 ### Метод contains(Object o) ###
+![containsImage](https://user-images.githubusercontent.com/44549306/203795813-8b44a851-55cb-4429-93a8-0a8117abf15a.png)
 #### Таблица результатов ####
 ```
 Benchmark                                  (N)  Mode  Cnt          Score           Error  Units
