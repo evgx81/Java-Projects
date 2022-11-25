@@ -52,6 +52,7 @@ TestListsFunctions.linkedListAddByIndex   2000  avgt    5    2925251,535 ±   18
 TestListsFunctions.linkedListAddByIndex  10000  avgt    5   64242885,946 ±  12995437,391  ns/op
 ```
 ### Метод addAll(Collection<? extends E> c) ###
+![addAll](https://user-images.githubusercontent.com/44549306/203795804-a9209fd4-11b4-4a90-a28b-6ed4474d31bf.png)
 #### Таблица результатов ####
 ```
 Benchmark                                  (N)  Mode  Cnt          Score           Error  Units
