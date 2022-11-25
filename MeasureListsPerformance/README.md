@@ -162,6 +162,7 @@ TestListsFunctions.linkedListSize         2000  avgt    5          2,569 ±     
 TestListsFunctions.linkedListSize        10000  avgt    5          2,592 ±         0,355  ns/op
 ```
 ### Метод indexOf(Object o) ###
+![indexOfImage](https://user-images.githubusercontent.com/44549306/203941800-d45e8d72-4154-4860-b579-5f79ef6fb654.png)
 #### Таблица результатов ####
 ```
 Benchmark                                  (N)  Mode  Cnt          Score           Error  Units
