@@ -30,6 +30,7 @@ TestListsFunctions.linkedListAdd          2000  avgt    5     522854,233 ±    3
 TestListsFunctions.linkedListAdd         10000  avgt    5    2671384,506 ±   1733663,343  ns/op
 ```
 ### Метод add(int index, E element) ###
+![addByIndexImage](https://user-images.githubusercontent.com/44549306/203795809-cc7d7163-6c5e-47bc-8422-089e897912cc.png)
 #### Таблица результатов ####
 ```
 Benchmark                                  (N)  Mode  Cnt          Score           Error  Units
