@@ -53,7 +53,10 @@ public class Employee {
         this.name = data[1];
         this.gender = data[2].equals("Female") ? Gender.FEMALE : Gender.MALE;
         this.birthDay = data[3];
-       
+
+        // Если в хэш-таблице содержится данное подразделения, то заполняем поле подразделения
+        // значением уже созданного подразделения из хэш-таблицы.
+        // В противном случае создаем новое подразделение и добавляем его в хэш-таблицу.
         String division = data[4];
         if (createdDivisions.containsKey(division)) {
             this.division = createdDivisions.get(division);
