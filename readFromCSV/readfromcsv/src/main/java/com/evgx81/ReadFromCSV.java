@@ -40,5 +40,8 @@ public class ReadFromCSV
                                             .withSeparator(';')
                                             .build())
                                     .build();
+
+        // Создаем пустой массив строк
+        String[] nextLine;
     }
 }
