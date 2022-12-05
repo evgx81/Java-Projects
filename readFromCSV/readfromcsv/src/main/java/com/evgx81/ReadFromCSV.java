@@ -1,9 +1,14 @@
 package com.evgx81;
 
+import java.io.InputStreamReader;
 import java.io.InputStream;
 
 import java.util.LinkedList;
 import java.util.List;
+
+import com.opencsv.CSVParserBuilder;
+import com.opencsv.CSVReaderBuilder;
+import com.opencsv.CSVReader;
 
 /**
  * Класс ReadFromCSV реализует чтение из csv файла и заполнение листа считанными данными.
@@ -25,5 +30,15 @@ public class ReadFromCSV
             System.out.println("Error: resource file not found!");
             return;
         }
+
+        // Создаем объект, с помощью которого будем считывать строки из файла
+        // Пропускаем первую строку файла и начинаем чтение со второй строки файла
+        // Сепаратором является ;
+        CSVReader reader = new CSVReaderBuilder(new InputStreamReader(fileStream))
+                                    .withSkipLines(1)
+                                    .withCSVParser(new CSVParserBuilder()
+                                            .withSeparator(';')
+                                            .build())
+                                    .build();
     }
 }
