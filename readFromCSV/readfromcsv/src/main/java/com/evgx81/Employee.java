@@ -39,9 +39,33 @@ public class Employee {
     private String birthDay;
 
     /**
-     * Хэш-таблица для хранения пар: ("Название подразделения" - "Подразделение").
+     * Хэш-таблица для хранения пар: ("Название подразделения" - "Подразделение"). 
      */
     private static HashMap<String, Division> createdDivisions = new HashMap<>();
+
+    /**
+     * Конструктор с параметром для класса Employee.
+     * 
+     * @param data массив строк, который содержит считанные элементы одной строки файла.
+     */
+    public Employee(String[] data) {
+        this.ID = Integer.parseInt(data[0]);
+        this.name = data[1];
+        this.gender = data[2].equals("Female") ? Gender.FEMALE : Gender.MALE;
+        this.birthDay = data[3];
+       
+        String division = data[4];
+        if (createdDivisions.containsKey(division)) {
+            this.division = createdDivisions.get(division);
+        }
+        else {
+            Division newDivision = new Division(division);
+            createdDivisions.put(division, newDivision);
+            this.division = newDivision;
+        }
+    
+        this.salary = Integer.parseInt(data[5]);
+    }
 
     /**
      * Set и get методы для класса Employee.
