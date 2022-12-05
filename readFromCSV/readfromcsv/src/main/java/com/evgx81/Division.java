@@ -9,14 +9,14 @@ import java.util.concurrent.atomic.AtomicInteger;
  */
 public class Division {
     /**
-     * Поле, которое позволяет реализовать сквозную генерацию id подразделения.
+     * Поле, которое позволяет реализовать сквозную генерацию ID подразделения.
      */
     transient private static AtomicInteger nextIDCounter = new AtomicInteger(1);
 
     /**
      *  Уникальный идентификатор подразделения.
      */
-    private int id;
+    private int ID;
 
     /**
      *  Название подразделения.
@@ -29,20 +29,20 @@ public class Division {
      * @param name название подразделения.
      */
     public Division(String name) {
-        // Увеличивает на единицу текущее значение id
-        this.id = nextIDCounter.getAndIncrement();
+        // Увеличивает на единицу текущее значение ID
+        this.ID = nextIDCounter.getAndIncrement();
         this.name = name;
     }
 
      /**
      * Set и get методы для класса Division.
      */
-    public int getId() {
-        return id;
+    public int getID() {
+        return ID;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setID(int ID) {
+        this.ID = ID;
     }
 
     public String getName() {
