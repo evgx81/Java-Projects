@@ -1,5 +1,7 @@
 package com.evgx81;
 
+import java.util.HashMap;
+
 /**
  * Класс Employee содержит информацию о работнике.
  * 
@@ -35,6 +37,11 @@ public class Employee {
      * Зарплата работника.
      */
     private String birthDay;
+
+    /**
+     * Хэш-таблица для хранения пар: ("Название подразделения" - "Подразделение").
+     */
+    private static HashMap<String, Division> createdDivisions = new HashMap<>();
 
     /**
      * Set и get методы для класса Employee.
