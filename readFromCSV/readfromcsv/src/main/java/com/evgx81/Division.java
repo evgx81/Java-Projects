@@ -3,7 +3,7 @@ package com.evgx81;
 import java.util.concurrent.atomic.AtomicInteger;
 
 /**
- * Класс Division содержит информацию оподразделении работника работнике.
+ * Класс Division содержит информацию о подразделении работника.
  * 
  * @author evgx81
  */
