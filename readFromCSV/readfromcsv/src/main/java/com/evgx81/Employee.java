@@ -36,7 +36,56 @@ public class Employee {
      */
     private String birthDay;
 
-   
+    /**
+     * Set и get методы для класса Employee.
+     */
+    public int getID() {
+        return ID;
+    }
+    
+    public void setID(int ID) {
+        this.ID = ID;
+    }
+    
+    public String getName() {
+        return name;
+    }
+    
+    public void setName(String name) {
+        this.name = name;
+    }
+    
+    public Gender getGender() {
+        return gender;
+    }
+    
+    public void setGender(Gender gender) {
+        this.gender = gender;
+    }
+    
+    public Division getDivision() {
+        return division;
+    }
+    
+    public void setDivision(Division division) {
+        this.division = division;
+    }
+    
+    public Integer getSalary() {
+        return salary;
+    }
+    
+    public void setSalary(Integer salary) {
+        this.salary = salary;
+    }
+    
+    public String getBirthDay() {
+        return birthDay;
+    }
+    
+    public void setBirthDay(String birthDay) {
+        this.birthDay = birthDay;
+    }
 }
 
 /**
