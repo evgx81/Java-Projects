@@ -8,6 +8,9 @@ import java.util.concurrent.atomic.AtomicInteger;
  * @author evgx81
  */
 public class Division {
+    /**
+     * Поле, которое позволяет реализовать сквозную генерацию id подразделения.
+     */
     transient private static AtomicInteger nextIDCounter = new AtomicInteger(1);
 
     /**
@@ -26,6 +29,7 @@ public class Division {
      * @param name название подразделения.
      */
     public Division(String name) {
+        // Увеличивает на единицу текущее значение id
         this.id = nextIDCounter.getAndIncrement();
         this.name = name;
     }
