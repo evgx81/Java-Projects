@@ -58,5 +58,8 @@ public class ReadFromCSV
             System.out.println("Validation error in line " + 
                 exception.getLineNumber() + ": " + exception.getMessage());
         }
+
+        System.out.println("Reading completed!");
+        System.out.println("List contains " + employees.size() + " elements!");
     }
 }
