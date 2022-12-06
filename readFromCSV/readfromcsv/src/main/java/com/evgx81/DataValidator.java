@@ -18,25 +18,25 @@ public class DataValidator implements RowValidator {
     private String message;
 
     /**
+     * Реализуем проверку на валидацию строки и возвращаем результат. 
      * 
+     * @param row массив строк, который будет проверен на валидацию
+     * @return true, если строка валидная, false - в противном случае
      */
     @Override
     public boolean isValid(String[] row) {
+        // Проверяем, что массив строк содержит 6 элементов 
         if (row.length != 6) {
             message = "Row must contain only 6 columns";
             return false;
         }
 
+        // Проверяем, что идентификатор и зарплата работника являются целочисленными
         try {
             Integer.parseInt(row[0]);
             Integer.parseInt(row[5]);
         } catch (NumberFormatException ex) {
             message = "ID and Salary must be integer";
-            return false;
-        }
-
-        if (row[2].equals("Female") && row[2].equals("Male")) {
-            message = "Gender must be Male or Female";
             return false;
         }
 
