@@ -21,7 +21,7 @@ public class DataValidator implements RowValidator {
      * Реализуем проверку на валидацию строки и возвращаем результат. 
      * 
      * @param row массив строк, который будет проверен на валидацию
-     * @return true, если строка валидная, false - в противном случае
+     * @return true, если строка валидная, false - в противном случае.
      */
     @Override
     public boolean isValid(String[] row) {
@@ -37,6 +37,12 @@ public class DataValidator implements RowValidator {
             Integer.parseInt(row[5]);
         } catch (NumberFormatException ex) {
             message = "ID and Salary must be integer";
+            return false;
+        }
+
+        // Проверяем на валидацию пол работника
+        if (row[2].equals("Female") && row[2].equals("Male")) {
+            message = "Gender must be Male or Female";
             return false;
         }
 
