@@ -58,4 +58,22 @@ public class EmployeeTest {
 
         assertEquals(empl_test.getSalary(), (Integer) 1500);
     }
+
+    @Test(expected = NumberFormatException.class)
+    public void testCreatedEmployeeIDWithMistake() {
+        String[] test = {"1D", "Employee1", "Female", "10.11.1978", "G", "1500"};
+        Employee empl_test = new Employee(test);
+    }
+
+    @Test(expected = NumberFormatException.class)
+    public void testCreatedEmployeeGenderWithMistake() {
+        String[] test = {"1D", "Employee1", "Female1", "10.11.1978", "G", "1500"};
+        Employee empl_test = new Employee(test);
+    }
+
+    @Test(expected = NumberFormatException.class)
+    public void testCreatedEmployeeSalaryWithMistake() {
+        String[] test = {"1D", "Employee1", "Female1", "10.11.1978", "G", "15L00"};
+        Employee empl_test = new Employee(test);
+    }
 }
