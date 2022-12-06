@@ -20,7 +20,7 @@ public class DataValidator implements RowValidator {
     /**
      * Реализуем проверку на валидацию строки и возвращаем результат. 
      * 
-     * @param row массив строк, который будет проверен на валидацию
+     * @param row массив строк, который будет проверен на валидацию.
      * @return true, если строка валидная, false - в противном случае.
      */
     @Override
@@ -47,5 +47,18 @@ public class DataValidator implements RowValidator {
         }
 
         return true;
+    }
+
+    /**
+     * Реализует проверку на валидацию строки (массива строк) и кидает исключение, если невалидная.
+     * 
+     * @param row массив строк, который будет проверен на валидацию.
+     * @throws CsvValidationException если строка невалидная. Содержит сообщение, описывающее ошибку.
+     */
+    @Override
+    public void validate(String[] row) throws CsvValidationException {
+        if (!isValid(row)) {
+            throw new CsvValidationException(message);
+        }
     }
 }
