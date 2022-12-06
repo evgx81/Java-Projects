@@ -38,6 +38,7 @@ public class ReadFromCSV
         // Сепаратором является ;
         CSVReader reader = new CSVReaderBuilder(new InputStreamReader(fileStream))
                                     .withSkipLines(1)
+                                    .withRowValidator(new DataValidator())
                                     .withCSVParser(new CSVParserBuilder()
                                             .withSeparator(';')
                                             .build())
