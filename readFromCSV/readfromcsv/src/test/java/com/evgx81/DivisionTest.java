@@ -12,13 +12,12 @@ import org.junit.Test;
  */
 public class DivisionTest 
 {
-
     @Test
-    public void createDivision()
+    public void correctDivisiionInitName()
     {
         Division test = new Division("Test1");
 
-        assertEquals(test.getName(), "Test1");
+        assertEquals("Test1", test.getName());
     }
 
     @Test
@@ -27,11 +26,11 @@ public class DivisionTest
         Division test = new Division("Test1");
         test.setName("Test2");
 
-        assertEquals(test.getName(), "Test2");
+        assertEquals("Test2", test.getName());
     }
 
     @Test
-    public void checkIDOfFDiiferentDivisions()
+    public void checkIDOfFDifferentDivisions()
     {
         Division test1 = new Division("Test1");
         Division test2 = new Division("Test2");
