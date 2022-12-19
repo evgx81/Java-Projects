@@ -10,7 +10,5 @@ public class Rooster implements Bird {
     @Override
     public void sing() {
         System.out.println("Ку-ка-ре-ку!");
-        
     }
-    
 }
