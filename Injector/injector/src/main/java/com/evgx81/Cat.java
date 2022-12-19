@@ -1,7 +1,7 @@
 package com.evgx81;
 
 /**
- * Класс Rooster реализует интерфейс Cat.
+ * Класс Cat реализует интерфейс Mammal.
  * 
  * @author evgx81
  */
