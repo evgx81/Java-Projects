@@ -19,8 +19,7 @@ public class InjectorTest
     @Test
     public void testCatRooster() {
 
-        Injector injector = new Injector();
-        injector.loadProperties("src/test/resources/CatRooster.properties");
+        Injector injector = new Injector("src/test/resources/CatRooster.properties");
         Animals animals = (Animals) injector.inject(new Animals());
 
         animals.noise();
@@ -31,8 +30,7 @@ public class InjectorTest
     @Test
     public void testCatSparrow() {
 
-        Injector injector = new Injector();
-        injector.loadProperties("src/test/resources/CatSparrow.properties");
+        Injector injector = new Injector("src/test/resources/CatSparrow.properties");
         Animals animals = (Animals) injector.inject(new Animals());
 
         animals.noise();
@@ -44,8 +42,7 @@ public class InjectorTest
     @Test
     public void testDogRooster() {
 
-        Injector injector = new Injector();
-        injector.loadProperties("src/test/resources/DogRooster.properties");
+        Injector injector = new Injector("src/test/resources/DogRooster.properties");
         Animals animals = (Animals) injector.inject(new Animals());
 
         animals.noise();
@@ -56,8 +53,7 @@ public class InjectorTest
     @Test
     public void testDogSparrow() {
 
-        Injector injector = new Injector();
-        injector.loadProperties("src/test/resources/DogSparrow.properties");
+        Injector injector = new Injector("src/test/resources/DogSparrow.properties");
         Animals animals = (Animals) injector.inject(new Animals());
 
         animals.noise();
