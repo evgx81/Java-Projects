@@ -1,8 +1,7 @@
 package com.evgx81;
 
 /**
- * Класс Bird является базовым для классов Rooster и Sparrow.
- * В производных классах будет переопределяться метод sing. 
+ * Интерфейс Bird имплементируется классами Rooster и Sparrow.
  * 
  * @author evgx81
  */
