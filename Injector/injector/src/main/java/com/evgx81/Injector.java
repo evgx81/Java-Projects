@@ -14,13 +14,15 @@ public class Injector {
     /**
      * Хэш-таблица, которая будет хранить считанные из файла свойства.
      */
-    private Properties props = new Properties();
+    private Properties props;
 
     /**
      * Функция считывания данных из файла.
      */
-    public void loadProperties(String path) {
+    public Injector(String path) {
     
+        this.props = new Properties();
+
         try {
             // Создаем объект для чтения файла настроек (properties)
             FileInputStream fs = new FileInputStream(path);
