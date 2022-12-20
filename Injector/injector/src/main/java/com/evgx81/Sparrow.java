@@ -9,7 +9,7 @@ public class Sparrow implements Bird {
 
     @Override
     public void sing() {
-        System.out.println("Чик-чирик");
+        System.out.println("Чик-чирик!");
     }
     
 }
